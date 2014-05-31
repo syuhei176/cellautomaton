@@ -44,5 +44,10 @@ var wireworld = new CellAutomaton(function() {
 		  }
 	  });
 
+wireworld.refresh();
+setInterval(function(){
+	wireworld.step();
+}, 1000);
+
 
 ```
