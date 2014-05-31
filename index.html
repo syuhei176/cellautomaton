@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="lib/snap.svg-min.js"></script>
+<script src="cellautomaton.js"></script>
+<script src="wireworld.js"></script>
+<style>
+.menu {
+position: fixed; 
+}
+</style>
+<script>
+$(function() {
+	var view = new View(30, 30);
+	var wireworld = WireWorld(function(x, y, state) {
+		if(state == 0) {
+			view.change(x, y, "#232323");
+		}else if(state == 1) {
+			view.change(x, y, "#ffff00");
+		}else if(state == 2) {
+			view.change(x, y, "#0000ff");
+		}else if(state == 3) {
+			view.change(x, y, "#ff0000");
+		}
+	});
+	view.init(wireworld);
+	wireworld.refresh();
+	setInterval(function(){
+		wireworld.step();
+	}, 500);
+
+})
+</script>
+</head>
+
+<body>
+<svg id="svg" width="1024px" height="1024px"></svg>
+</body>
+</html>
